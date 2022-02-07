@@ -1,0 +1,278 @@
+// CARRINHO
+var car = document.querySelector('.btn-car')
+var quant = 0;
+function dropCar() {
+
+}
+
+function addCarrinho(x) {
+  //localStorage.removeItem('quant')
+  //return console.log('a')
+  if(!localStorage.getItem('quant')) {
+    localStorage.setItem('quant', Number(x))
+    quant = localStorage.getItem('quant')
+    //console.log('quant: ' + quant )
+    car.innerHTML = `Carrinho(${quant})`
+    return
+  }
+  quant = localStorage.getItem('quant')
+  localStorage.setItem('quant', Number(quant) + Number(x))
+  //console.log('quant: ' + quant + ' quant atual: ' + localStorage.getItem('quant'))
+  car.innerHTML = `Carrinho(${localStorage.getItem('quant')})`
+  return
+}
+
+if(localStorage.getItem('quant')) {
+  car.innerHTML = `Carrinho(${localStorage.getItem('quant')})`
+}
+
+// CARRINHO DO PROFESSOR
+const elementosNoCarrinho = document.querySelector('.dropCarrinho')
+const headerCloseModal = document.querySelector('.iconClose')
+const countProdutos = document.querySelector('.btn-car')
+
+const produtos = !getCarrinho() ? [] : [getCarrinho()]
+
+function addCarrinho(id) {
+  try {
+    produtos.push({
+    idProduto: id,
+    urlEstampa: 'https://i.ibb.co/RhGt8RP/camiza-azul.png'
+    })
+    array = produtos.reduce((list, sub) => list.concat(sub), [])
+    let keys = JSON.stringify(array)
+    localStorage.setItem('produto', keys)
+    carregarquantidade()
+  } catch(error) {
+    console.log(error)
+  }
+}
+
+function getCarrinho() {
+  let items = localStorage.getItem('produto')
+  return JSON.parse(items)
+}
+
+function limpar() {
+  localStorage.removeItem('produto')
+}
+
+function dropCar() {
+  elementosNoCarrinho.style.display = 'flex'
+  headerCloseModal.style.display = 'flex'
+  if(!getCarrinho()) {
+    elementosNoCarrinho.innerHTML = `Desculpe, não temos nada para você`
+    elementosNoCarrinho.style.justifyContent = 'center'
+    elementosNoCarrinho.style.alignItems = 'center'
+    return
+  }
+}
+
+function downCar() {
+  elementosNoCarrinho.style.display = 'none'
+  headerCloseModal.style.display = 'none'
+}
+
+function carregarquantidade() {
+  var countCarrinho = getCarrinho()
+  countProdutos.innerHTML = countCarrinho ? `Carrinho(${countCarrinho.length})` : "Carrinho(0)"
+}
+
+carregarquantidade()
+//limpar()
+//getCarrinho()
+
+// FUNCIONA
+const elementosNoCarrinho = document.querySelector('.dropCarrinho')
+const headerCloseModal = document.querySelector('.iconClose')
+const countProdutos = document.querySelector('.btn-car')
+
+const produtos = !getCarrinho() ? [] : [getCarrinho()]
+
+const camisaEstampa = document.querySelector('.content-estampa')
+const camisaImg = document.querySelector('.camisa-img')
+
+const cores = {
+  'Azul': "https://i.ibb.co/RhGt8RP/camiza-azul.png",
+  'Branca': "https://i.ibb.co/nfM4JGr/camisa-branca.png",
+  'Cinza': "https://i.ibb.co/NsXSdqk/camisa-cinza.png"  
+}
+
+const estampa = {
+  1: "https://i.ibb.co/zQsr2Xz/Printful-Peacock-removebg-preview.png",
+  2: "https://i.ibb.co/XtDSrS4/PINK-FLOWER-removebg-preview.png",
+  3: "https://i.ibb.co/L93CZBp/GSC-Flamingo-removebg-preview.png",
+  4: "https://i.ibb.co/YcXbbkB/Printful-wild-removebg-preview.png"
+}
+
+function addCarrinho(id) {
+  //let imgEstampa = document.querySelector('.img-estampa')
+  //if(!imgEstampa) return alert('Selecione uma estampa')
+  try {
+    produtos.push({
+    idProduto: id,
+    urlEstampa: 'https://i.ibb.co/RhGt8RP/camiza-azul.png'
+    })
+    array = produtos.reduce((list, sub) => list.concat(sub), [])
+    let keys = JSON.stringify(array)
+    localStorage.setItem('produto', keys)
+    carregarquantidade()
+  } catch(error) {
+    console.log(error)
+  }
+}
+
+function getCarrinho() {
+  let items = localStorage.getItem('produto')
+  return JSON.parse(items)
+}
+
+function limpar() {
+  localStorage.removeItem('produto')
+}
+
+function dropCar() {
+  elementosNoCarrinho.style.display = 'flex'
+  headerCloseModal.style.display = 'flex'
+  if(!getCarrinho()) {
+    elementosNoCarrinho.innerHTML = `Desculpe, não temos nada para você`
+    elementosNoCarrinho.style.justifyContent = 'center'
+    elementosNoCarrinho.style.alignItems = 'center'
+    return
+  }
+}
+
+function downCar() {
+  elementosNoCarrinho.style.display = 'none'
+  headerCloseModal.style.display = 'none'
+}
+
+function carregarquantidade() {
+  var countCarrinho = getCarrinho()
+  countProdutos.innerHTML = countCarrinho ? `Carrinho(${countCarrinho.length})` : "Carrinho(0)"
+}
+
+function selectCor(cor) {
+  camisaImg.src = cores[cor]
+  sessionStorage.setItem(cor, cores[cor])
+}
+
+function selectEstampa(id) {
+  //camisaEstampa.style.justifyContent = 'center'
+  //camisaEstampa.style.alignItems = 'center'
+  camisaEstampa.innerHTML = `<img style='width: 100px; height: auto;' src='${estampa[id]}'>`
+  sessionStorage.setItem('estampa', id)
+}
+
+carregarquantidade()
+//limpar()
+//getCarrinho()
+
+// CALMA
+const elementosNoCarrinho = document.querySelector('.dropCarrinho')
+const headerCloseModal = document.querySelector('.iconClose')
+const countProdutos = document.querySelector('.btn-car')
+
+const produtos = !getCarrinho() ? [] : [getCarrinho()]
+
+const camisaEstampa = document.querySelector('.content-estampa')
+const camisaImg = document.querySelector('.camisa-img')
+
+const cores = {
+  'Azul': "https://i.ibb.co/RhGt8RP/camiza-azul.png",
+  'Branca': "https://i.ibb.co/nfM4JGr/camisa-branca.png",
+  'Cinza': "https://i.ibb.co/NsXSdqk/camisa-cinza.png"  
+}
+
+const estampa = {
+  1: "https://i.ibb.co/zQsr2Xz/Printful-Peacock-removebg-preview.png",
+  2: "https://i.ibb.co/XtDSrS4/PINK-FLOWER-removebg-preview.png",
+  3: "https://i.ibb.co/L93CZBp/GSC-Flamingo-removebg-preview.png",
+  4: "https://i.ibb.co/YcXbbkB/Printful-wild-removebg-preview.png"
+}
+
+function addCarrinho(id) {
+  let imgEstampa = document.querySelector('.img-estampa')
+  if(!imgEstampa) return alert('Selecione uma estampa')
+  try {
+    produtos.push({
+    idProduto: id,
+    urlEstampa: 'https://i.ibb.co/RhGt8RP/camiza-azul.png'
+    })
+    array = produtos.reduce((list, sub) => list.concat(sub), [])
+    let keys = JSON.stringify(array)
+    localStorage.setItem('produto', keys)
+    carregarquantidade()
+  } catch(error) {
+    console.log(error)
+  }
+}
+
+function getCarrinho() {
+  let items = localStorage.getItem('produto')
+  return JSON.parse(items)
+}
+
+function limpar() {
+  localStorage.removeItem('produto')
+}
+
+function dropCar() {
+  elementosNoCarrinho.style.display = 'flex'
+  headerCloseModal.style.display = 'flex'
+  if(!getCarrinho()) {
+    elementosNoCarrinho.innerHTML = `Desculpe, não temos nada para você`
+    elementosNoCarrinho.style.justifyContent = 'center'
+    elementosNoCarrinho.style.alignItems = 'center'
+    return
+  }
+}
+
+function downCar() {
+  elementosNoCarrinho.style.display = 'none'
+  headerCloseModal.style.display = 'none'
+}
+
+function carregarquantidade() {
+  var countCarrinho = getCarrinho()
+  countProdutos.innerHTML = countCarrinho ? `Carrinho(${countCarrinho.length})` : "Carrinho(0)"
+}
+
+function getEstampaCor(tipo) {
+  if(tipo === "estampa") {
+  let items = sessionStorage.getItem('estampa')
+  return JSON.parse(items)
+  }
+  if(tipo === "cor") {
+  let items = sessionStorage.getItem('cor')
+  return JSON.parse(items)
+  }
+}
+
+function selectCor(cor) {
+  if(!cor && getEstampaCor('cor')) {
+    console.log('entrou')
+    camisaImg.src = sessionStorage.getItem(`cor`)
+    return
+    }
+  camisaImg.src = cores[cor]
+  sessionStorage.setItem('cor', [cor, cores[cor]])
+}
+
+function selectEstampa(id) {
+  if(!id && getEstampaCor('estampa')) {
+    console.log(sessionStorage.getItem('estampa'))
+    camisaEstampa.innerHTML = `<img style='width: 100px; height: auto;' src='${sessionStorage.getItem(`estampa`)}'>`
+    return
+    }
+  //camisaEstampa.style.justifyContent = 'center'
+  //camisaEstampa.style.alignItems = 'center'
+  camisaEstampa.innerHTML = `<img style='width: 100px; height: auto;' src='${estampa[id]}'>`
+  sessionStorage.setItem('estampa', [id, estampa[id]])
+}
+
+selectCor(false)
+selectEstampa(false)
+carregarquantidade()
+//limpar()
+//getCarrinho()
